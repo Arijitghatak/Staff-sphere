@@ -37,10 +37,12 @@ public class Login extends JFrame implements ActionListener {
 
         login  = new JButton("Login");
         login.setBounds(150,140,150,30);
+        login.addActionListener(this);
         add(login);
 
         back  = new JButton("Back");
         back.setBounds(150,180,150,30);
+        back.addActionListener(this);
         add(back);
 
         ImageIcon i11 = new ImageIcon(ClassLoader.getSystemResource("icons/logo.png"));
@@ -66,6 +68,13 @@ public class Login extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()==login){
+
+        } else if (e.getSource()==back) {
+            System.exit(90);
+
+        }
 
     }
 
