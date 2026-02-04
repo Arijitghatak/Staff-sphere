@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+
 
 public class Login extends JFrame implements ActionListener {
 
@@ -60,7 +62,7 @@ public class Login extends JFrame implements ActionListener {
         add(image);
 
         setSize(600,300);
-        setLocation(450,200);
+        setLocation(380,200);
         setVisible(true);
 
 
@@ -70,6 +72,25 @@ public class Login extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if(e.getSource()==login){
+
+            try {
+                String Username = tusername.getText();
+                String Password = tpassword.getText();
+
+                Conn Connection = new Conn();
+                String query = "Select * from login where Username ='"+Username+"' and Password = '"+Password+"'";
+                ResultSet resultSet=Connection.statement.executeQuery(query);
+
+                if(resultSet.next()){
+                    setVisible(false);
+                    new Main_page();
+                }else{
+                    JOptionPane.showMessageDialog(null,"Invalid Username and Password");
+                }
+
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
 
         } else if (e.getSource()==back) {
             System.exit(90);

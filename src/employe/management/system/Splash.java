@@ -16,7 +16,7 @@ public class Splash extends JFrame {
         add(image);
 
         setSize(1170,650);
-        setLocation(200,100);
+        setLocation(50,80);
         setVisible(true);
         setLayout(null);
 
