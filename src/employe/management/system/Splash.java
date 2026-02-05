@@ -15,6 +15,11 @@ public class Splash extends JFrame {
         image.setBounds(0,0,1170,650);
         add(image);
 
+        JLabel h1 = new JLabel("StaffSphere");
+        h1.setBounds(450,500,300,50);
+        h1.setFont(new Font("Roboto",Font.BOLD,50));
+        h1.setForeground(Color.WHITE);
+        image.add(h1);
         setSize(1170,650);
         setLocation(50,80);
         setVisible(true);
