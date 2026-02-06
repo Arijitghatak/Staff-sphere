@@ -31,6 +31,8 @@ public class Main_page extends JFrame {
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new Addstaff();
+                setVisible(false);
 
             }
         });
@@ -57,6 +59,8 @@ public class Main_page extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                new View();
+                setVisible(false);
             }
         });
         image.add(view);

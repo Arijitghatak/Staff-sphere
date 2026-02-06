@@ -264,6 +264,9 @@ public class Addstaff extends JFrame implements ActionListener {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
+        }else {
+            setVisible(false);
+            new Main_page();
         }
     }
 
