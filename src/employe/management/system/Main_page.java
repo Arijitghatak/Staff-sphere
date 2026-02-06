@@ -46,6 +46,9 @@ public class Main_page extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                new Remove();
+                setVisible(false);
+
             }
         });
         image.add(remove);
