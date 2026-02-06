@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 
@@ -213,29 +215,55 @@ public class Addstaff extends JFrame implements ActionListener {
 
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==add){
+        if (e.getSource() == add) {
+
+            if (tdob.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "Please select Date of Birth");
+                return;
+            }
+
             String name = tname.getText();
             String fname = tfname.getText();
-            String date = ((JTextField)tdob.getDateEditor().getUiComponent()).getText();
-            String salary = tsalary.getText();
+
+            Date selectedDate = tdob.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = sdf.format(selectedDate);
+
+            int salary = Integer.parseInt(tsalary.getText());
             String adress = taddress.getText();
             String adhar = taadhar.getText();
+
+            if (!adhar.matches("\\d{12}")) {
+                JOptionPane.showMessageDialog(null, "Aadhaar must be 12 digits");
+                return;
+            }
+
             String phone = tphone.getText();
             String deg = tdesignation.getText();
             String edu = (String) teducation.getSelectedItem();
             String email = temail.getText();
             String id = empid.getText();
 
-
-            try{
+            try {
                 Conn c = new Conn();
-                String query = "insert into employee values('id','name','fname','dob',)"
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
+                String query =
+                        "INSERT INTO employee " +
+                                "(id, name, fname, dob, salary, address, aadhaar, phone, deg, edu, email) " +
+                                "VALUES ('" + id + "', '" + name + "', '" + fname + "', '" + date + "', " +
+                                salary + ", '" + adress + "', '" + adhar + "', '" + phone + "', '" +
+                                deg + "', '" + edu + "', '" + email + "')";
 
+                c.statement.executeUpdate(query);
+                JOptionPane.showMessageDialog(null, "Data added successfully");
+                setVisible(false);
+                new Main_page();
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
         }
     }
 
